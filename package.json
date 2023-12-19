@@ -1,0 +1,20 @@
+{
+  "name": "injective-mint2",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "@injectivelabs/sdk-ts": "^1.14.4",
+    "@types/node": "^20.10.5",
+    "dotenv": "^16.3.1",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./bin/app.js",
+    "dev": "ts-node ./src/app.ts"
+  }
+}
