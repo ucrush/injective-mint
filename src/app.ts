@@ -12,7 +12,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 // mint 次数
-const mint_count = parseInt(process.env.mint_count||"1");
+const mint_count = parseInt(process.env.mint_count || "1");
 // 钱包私钥
 const privateKeyHash = process.env.privateKeyHash || "";
 // const network = getNetworkInfo(Network.Testnet);
@@ -24,13 +24,14 @@ const injectiveAddress = privateKey.toBech32();
 console.log(`address:${injectiveAddress}`);
 
 async function send() {
-
   const publicKey = privateKey.toPublicKey().toBase64();
 
   /** Account Details **/
   const accountDetails = await new ChainRestAuthApi(network.rest).fetchAccount(
     injectiveAddress
   );
+  const nonce = parseInt(accountDetails.account.base_account.sequence, 10);
+  console.log(`Nonce:`, nonce);
 
   /** Prepare the Message */
   const amount = {
@@ -41,16 +42,16 @@ async function send() {
   const msg = MsgSend.fromJSON({
     amount,
     srcInjectiveAddress: injectiveAddress,
-    dstInjectiveAddress: "inj15jy9vzmyy63ql9y6dvned2kdat2994x5f4ldu4",
+    dstInjectiveAddress: "inj16kcztx3eachw5y8z4tvxysfg2gtxerd77q7glz",
   });
 
   /** Prepare the Transaction **/
   const { signBytes, txRaw } = createTransaction({
     message: msg,
-    memo: "ZGF0YToseyJwIjoiaW5qcmMtMjAiLCJvcCI6Im1pbnQiLCJ0aWNrIjoiSU5KUyIsImFtdCI6IjIwMDAifQ==",
+    memo: "ZGF0YToseyJwIjoiaW5qcmMtMjAiLCJvcCI6Im1pbnQiLCJ0aWNrIjoiSU5KUyIsImFtdCI6IjEwMDAifQ==",
     fee: DEFAULT_STD_FEE,
     pubKey: publicKey,
-    sequence: parseInt(accountDetails.account.base_account.sequence, 10),
+    sequence: nonce,
     accountNumber: parseInt(
       accountDetails.account.base_account.account_number,
       10

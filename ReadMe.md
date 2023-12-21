@@ -1,6 +1,7 @@
-重命名 .env-bk 为 .env 将私钥和 mint 次数填写好
+renaming .env-bk to .env
+Fill in the private key and mint of times
 
-执行下面的命令
+Execute the following command to start the mint
 
 ```bash
 yarn
