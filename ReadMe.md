@@ -1,8 +1,12 @@
-重命名 .env-bk 为 .env
+Renaming .env-bk   .env
 
-执行下面的命令开打
+Execute the following command to start the mint
 
 ```bash
 yarn
 yarn dev
 ```
+Renaming. env bk to. env
+
+
+
